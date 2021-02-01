@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
 
 
 //routes
-const userRoutes = require('./routes/user');
+const authRoutes = require('./routes/auth');
+const adminRoutes = require('./routes/admin/auth');
 
 
 //envrionment variables 
@@ -24,20 +25,8 @@ mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGOD
 } );
 
 app.use(bodyParser());
-app.use('/api', userRoutes);
-
-
-// app.get('/', (req, res, next) => {
-//     res.status(200).json({
-//         message: 'Hello From Server'
-//     })
-// });
-
-// app.post('/data', (req, res, next) => {
-//     res.status(200).json({
-//         message: req.body
-//     })
-// });
+app.use('/api', authRoutes);
+app.use('/api', adminRoutes);
 
 
 app.listen(process.env.PORT, () => {
