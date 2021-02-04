@@ -1,7 +1,7 @@
 const { default: slugify } = require('slugify');
 const Category = require('../models/category');
 
-
+//this function is used by getCategory 
 createCategories = (categories, parentId = null) => {
 
     const categoryList = []
