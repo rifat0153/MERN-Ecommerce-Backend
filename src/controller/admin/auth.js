@@ -46,6 +46,8 @@ exports.signin = (req, res) => {
           { expiresIn: "12h" }
         );
         const { _id, firstName, lastName, email, role, fullName } = user;
+        res.cookie('token', token, { expiresIn: '12h' });
+
         res.status(200).json({
           token,
           user: { _id, firstName, lastName, email, role, fullName },
@@ -59,4 +61,9 @@ exports.signin = (req, res) => {
         .json({ message: "Something went wrong during admin sign in" });
     }
   });
+};
+
+exports.signout = (req, res) => {
+  res.clearCookie('token');
+  res.status(200).json({message: 'Signout Succesfully....!'})
 };
