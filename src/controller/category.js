@@ -17,6 +17,7 @@ createCategories = (categories, parentId = null) => {
             _id: c._id,
             name: c.name,
             slug: c.slug,
+            parentId: c.parentId,
             clildren: createCategories(categories, c._id)
         });
     }
